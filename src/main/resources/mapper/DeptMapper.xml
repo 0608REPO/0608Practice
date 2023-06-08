@@ -36,6 +36,30 @@
  		WHERE deptno = #{deptno}
  	</delete>
  	
+ 	<select id="searchDynamicDept" parameterType="com.spring.dto.Dept" resultType="com.spring.dto.Dept">
+ 		SELECT deptno, dname, loc
+ 		FROM dept
+ 		<trim prefix="WHERE" prefixOverrides="AND">
+ 			<if test="deptno != -1">
+ 				deptno = #{deptno}
+ 			</if>
+ 			<if test="dname != &quot;&quot;">
+ 				AND dname LIKE '%'||#{dname}||'%'
+ 			</if>
+ 			<if test="loc != &quot;&quot;">
+ 				AND loc LIKE '%'||#{loc}||'%'
+ 			</if>
+ 			
+ 		</trim>
+ 		
+ 	</select>
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
  	<!-- getDynamicDeptno -->
  	<select id="getDynamicDeptno" parameterType="hashmap" resultType="com.spring.dto.Dept">
  		SELECT deptno, dname, loc FROM dept

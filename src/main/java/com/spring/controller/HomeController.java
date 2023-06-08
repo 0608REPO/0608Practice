@@ -1,5 +1,6 @@
 package com.spring.controller;
 
+import java.lang.reflect.Array;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -34,6 +35,10 @@ public class HomeController {
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String main(Model model, HttpSession session) {
 		List<Dept> deptList = service.getAllDepts();
+		
+		deptList.sort((no1, no2) -> {
+			return no1.getDeptno() - no2.getDeptno();
+		});
 		
 		model.addAttribute("deptList", deptList);
 		
