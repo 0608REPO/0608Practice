@@ -83,5 +83,9 @@ public class DeptService {
 		return result;
 	}
 
+	public List<Dept> searchDynamicDept(HashMap<String, Object> searchDept) {
+		return mapper.searchDynamicDept(searchDept);
+	}
+
 	
 }

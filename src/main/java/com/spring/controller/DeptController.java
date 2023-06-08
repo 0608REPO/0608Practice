@@ -2,6 +2,8 @@ package com.spring.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 import org.slf4j.Logger;
@@ -169,6 +171,31 @@ public class DeptController {
 		
 		return view;
 	}
+	
+	
+	@RequestMapping(value = "/search", method = RequestMethod.POST)
+	public String searchDynamicDept(@RequestParam("deptno") String deptno,
+									@RequestParam("dname") String dname, 
+									@RequestParam("loc") String loc, Model model) {
+		String view = "error";
+		
+		if(deptno == "") {
+			deptno = "-1"; // 존재할 수 없는 deptno를 할당한다.
+		}
+		
+		HashMap<String, Object> searchDept = new HashMap<String, Object>();
+		searchDept.put("deptno", deptno);
+		searchDept.put("dname", dname);
+		searchDept.put("loc", loc);
+		
+		List<Dept> searchList = service.searchDynamicDept(searchDept);
+		model.addAttribute("deptList", searchList);
+		
+		view = "main";
+		
+		return view;
+	}
+	
 	
 //	// 예외 step02 : LoginController 내부에서 발행하는 모든 NPE 처리
 //	@ExceptionHandler({Exception.class})
