@@ -28,7 +28,7 @@ public interface DeptMapper {
 	public int deleteDeptByDeptno(int deptno) throws SQLException;
 	
 	// getDynamicDeptno
-	public List<Dept> getDynamicDeptno(HashMap<String, Integer> map1) throws SQLException;
+	public List<Dept> getConditionalDeptno(HashMap<String, Integer> map1) throws SQLException;
 
 	// getDynamicChoose
 	public List<Dept> getDynamicChoose(HashMap<String, String> map2) throws SQLException;

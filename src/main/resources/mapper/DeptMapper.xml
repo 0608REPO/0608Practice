@@ -59,6 +59,20 @@
  		 -->
  	</select>
  	
+ 	<!-- getDynamicDeptno -->
+ 	<select id="getConditionalDeptno" parameterType="hashmap" resultType="com.spring.dto.Dept">
+    select * from dept
+
+  <!-- -->   <trim prefix="WHERE" prefixOverrides="AND">
+        <if test="more != null">
+            <![CDATA[ deptno > ]]> #{more} 
+        </if>
+        <if test="less != null">
+           and <![CDATA[ deptno <  ]]>#{less}
+        </if>
+    </trim>
+</select>
+ 	
  	<!-- getDynamicChoose -->
  	<select id="getDynamicChoose" parameterType="hashmap" resultType="com.spring.dto.Dept">
  		SELECT deptno, dname, loc FROM dept

@@ -96,6 +96,10 @@ public class DeptController {
 		return view;
 	}
 	
+	
+	
+	
+	
 	// http://localhost:8082/modify/dept/10
 	@RequestMapping(value = "/modify/dept/{deptno}", method = RequestMethod.GET)
 	public String updateDeptForm(@PathVariable int deptno,
