@@ -33,4 +33,23 @@
  		WHERE empno = #{empno}
  	</select>
  	
+ 	<select id="getEmpByEname" resultType="com.spring.dto.Emp">
+ 		SELECT 
+			empno, 
+			ename, 
+			job, 
+			mgr, 
+			hiredate, 
+			sal, 
+			comm, 
+			deptno 
+		FROM emp
+ 		WHERE ename = #{ename}
+ 	</select>
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
  </mapper>

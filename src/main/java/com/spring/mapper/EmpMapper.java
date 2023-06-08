@@ -14,5 +14,7 @@ public interface EmpMapper {
 	public Emp getEmpByEmpnoAndEname(@Param("empno") int empno, @Param("ename") String ename) throws SQLException;
 
 	public Emp getEmpByEmpno(@Param("empno") int empno);
+
+	public Emp getEmpByEname(@Param("ename") String ename) throws SQLException;
 	
 }

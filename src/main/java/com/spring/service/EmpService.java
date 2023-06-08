@@ -42,4 +42,16 @@ public class EmpService {
 		
 		return emp;
 	}
+	
+	public Emp getEmpByEname(String ename) throws Exception {
+		Emp emp = null;
+		emp = empMapper.getEmpByEname(ename);
+		
+		return emp;
+	}
+	
+	
+	
+	
+	
 }
