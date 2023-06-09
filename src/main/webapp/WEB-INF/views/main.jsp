@@ -15,17 +15,33 @@
 <%@ include file="header.jsp" %>
 
 <c:if test="${not empty userId}">    
-<table align="center" border="0" cellpadding="5" cellspacing="2" width="100%" bordercolordark="white" bordercolorlight="black">
+
+
 	<div align="center">
-		<form>
-			<input type="text" name="searchDeptno" id="searchDeptno" style="display:on" >
-			<input type="text" name="searchDname" id="searchDname" style="display:none">
-			<input type="text" name="searchloc" id="searchloc" style="display:none">
+		<form action="/search" method="POST">
+			<input type="text" name="searchDeptno" id="searchDeptno" style="display:on" placeholder="deptno">
+			<input type="text" name="searchDname" id="searchDname" style="display:none" placeholder="dname">
+			<input type="text" name="searchloc" id="searchloc" style="display:none" placeholder="loc">
 			<br>
-			<input type="button" value="검색" onclick="location.href='/search'" >
-			<input type="button" value="상세 검색" onclick="location.href='/detailSearch'" >
+			<input type="submit" value="검색" >
+			<input type="button" value="상세 검색" id="detailSearch" onclick="doAction()" >
+			<input type="button" value="사원 검색" id="EmpDeptSearch" onclick="doAction2()" >
+			</form>
+	</div>
+	
+	<div align="center">
+		<form id = empDeptSearch2 style="display:none" action="/deptof" method="POST">			
+				<table align="center" cellpadding="5" cellspacing="2" width="60%" bordercolordark="white" bordercolorlight="black">
+					<tr>
+						<td align="center"><b>사원검색</b></td>
+						<td align="center"><input type="text" name="ename" id="ename"></td>
+						<td align="center"><input type="submit" value="부서 검색"></td>
+					</tr>
+				</table>
 		</form>
 	</div>
+	
+<table align="center" border="0" cellpadding="5" cellspacing="2" width="100%" bordercolordark="white" bordercolorlight="black">
 	
 	<tr>
         <td bgcolor="#336699">
@@ -95,6 +111,24 @@
 </c:if>
 
 <%@ include file="footer.jsp" %>
+
+<script>
+	function doAction(){
+		if(document.getElementById("searchDname").style.display == "none"){
+			document.getElementById("searchDname").style.display="inline";
+			document.getElementById("searchloc").style.display="inline";
+		}else{
+			document.getElementById("searchDname").style.display="none";
+			document.getElementById("searchloc").style.display="none";
+		}
+	}
+	
+	function doAction2(){
+		document.getElementById("empDeptSearch2").style.display="inline";
+	}
+
+</script>
+
 
 </body>
 </html>
