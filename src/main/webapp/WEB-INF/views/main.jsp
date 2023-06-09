@@ -17,13 +17,15 @@
 <c:if test="${not empty userId}">    
 <table align="center" border="0" cellpadding="5" cellspacing="2" width="100%" bordercolordark="white" bordercolorlight="black">
 	<div align="center">
-		<form>
+		<form id= "detailForm"  action="/submit-url" method="POST">
 			<input type="text" name="searchDeptno" id="searchDeptno" style="display:on" >
 			<input type="text" name="searchDname" id="searchDname" style="display:none">
 			<input type="text" name="searchloc" id="searchloc" style="display:none">
+			<input type="text" name="condition" id= "condition" style="display:none">
 			<br>
-			<input type="button" value="검색" onclick="location.href='/search'" >
-			<input type="button" value="상세 검색" onclick="location.href='/detailSearch'" >
+			<input type="submit" value="검색"  onclick="doSearch()">
+			<input type="button" value="상세 검색" id="detailSearch" onclick="doAction()" >
+			<input type="button" value="조건 검색" id="conditionSearch" onclick="makeCondition()" >
 		</form>
 	</div>
 	
@@ -95,6 +97,40 @@
 </c:if>
 
 <%@ include file="footer.jsp" %>
+
+<script>
+function doSearch(){
+	 let detailForm = document.getElementById("detailForm");
+	  let deptno = document.getElementById("searchDeptno").value;
+	  let condition = document.getElementById("condition").value;
+	  // type:hidden, 
+	  // name:_method, 
+	  // value:'DELETE' 값을 가지는 input 태그 내부에서 생성!
+ 	  let input = document.createElement('input'); 
+	  input.type = 'hidden'; 
+	  input.name = '_method'; 
+	  input.value  = 'SELECT'; 
+	  detailForm.appendChild(input); 
+	  
+	  detailForm.action = '/api/dynamic-sql/' +deptno+'/' + condition;
+	  detailForm.method = 'POST';
+	  detailForm.submit();
+} 	
+	function doAction(){
+		document.getElementById("searchDname").style.display="inline";
+		document.getElementById("searchloc").style.display="inline";
+		document.getElementById("condition").style.display="none";
+	} 	
+	function makeCondition(){
+		
+		document.getElementById("condition").style.display="inline";
+		document.getElementById("searchDname").style.display="none";
+		document.getElementById("searchloc").style.display="none";
+		
+	}
+	
+</script>
+
 
 </body>
 </html>
