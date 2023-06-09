@@ -48,7 +48,7 @@ public interface DeptMapper {
 	// insertDynamicForeachDeptnoList
 	public int insertDynamicForeachDeptnoList(List<Dept> list7) throws SQLException;
 
-	public List<Dept> searchDynamicDept(HashMap<String, Object> searchDept);
+
 		
 	
 	

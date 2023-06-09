@@ -174,9 +174,9 @@ public class DeptController {
 	
 	
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
-	public String searchDynamicDept(@RequestParam("deptno") String deptno,
-									@RequestParam("dname") String dname, 
-									@RequestParam("loc") String loc, Model model) {
+	public String searchDynamicDept(@RequestParam("searchDeptno") String deptno,
+									@RequestParam("searchDname") String dname, 
+									@RequestParam("searchloc") String loc, Model model) {
 		String view = "error";
 		
 		if(deptno == "") {
